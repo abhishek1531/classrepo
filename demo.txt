@@ -1,0 +1,2 @@
+Hello, this is written using writeFileSync
+This line is added using appendFileSync
