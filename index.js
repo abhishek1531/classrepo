@@ -39,11 +39,21 @@
 
 // Q) functions declare then export want to write our own function & declare it, and how to export it , how to import .
 
-const { isEven, square } = require("./utils");
+// const { isEven, square } = require("./utils");
 
-console.log(isEven(10));   
-console.log(isEven(7));    
+// console.log(isEven(10));   
+// console.log(isEven(7));    
 
-console.log(square(5));    
-console.log(square(9));    
+// console.log(square(5));    
+// console.log(square(9));    
 
+//-----------------------------------------------------------------------------
+
+const {funOnDiffPage} = require("./counter");
+const count = require("./counter");
+
+const count1 = require("./counter");
+
+console.log(count1);
+
+funOnDiffPage()
