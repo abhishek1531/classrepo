@@ -94,15 +94,37 @@ const functionality = () =>{
 //     console.log("Ended");
 // };
 
-const fetchData1 = () => {
+// const fetchData1 = () => {
+//     console.log("Started");
+//     const a = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+//         .then(response => response.json())
+//         .then(json => console.log(json));
+//     const b = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+//         .then(response => response.json())
+//         .then(json => console.log(json));
+
+//     // const aValue = await a
+//     // const bValue = await b    
+//     console.log("Ended");
+// };
+
+const fetchData1 = async () => {
     console.log("Started");
+    const promise1 = fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then(res => res.json());
+    const promise2 = fetch("https://jsonplaceholder.typicode.com/posts/2")
+        .then(res => res.json());
+    const data1 = await promise1;
+    const data2 = await promise2;
 
-    fetch("https://jsonplaceholder.typicode.com/posts/1")
-        .then(response => response.json())
-        .then(json => console.log(json));
-
+    console.log("First:", data1);
+    console.log("Second:", data2);
     console.log("Ended");
 };
+
+
+//event loop
+
 
 console.log("Started 1");
 fetchData1();
