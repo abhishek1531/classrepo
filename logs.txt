@@ -1,0 +1,1 @@
+URL: /favicon.ico | Method: GET
