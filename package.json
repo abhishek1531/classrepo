@@ -9,5 +9,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "\\# classrepo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishek1531/classrepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abhishek1531/classrepo/issues"
+  },
+  "homepage": "https://github.com/abhishek1531/classrepo#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
