@@ -11,8 +11,14 @@ const getUsersById = (req,res)=>{
 
     res.json(user)
 }
+// Post controller
+const createUser = (req,res)=>{
+    const newUser = req.body
+
+    res.json(newUser)
+}
 module.exports = {
     getUsers,
-    getUsersById
+    getUsersById,
+    createUser
 }
-

@@ -1,0 +1,8 @@
+// routes mein jana hai naya routes add karna hai post method ka hona chahiye , post method ke andr ek object set karna hai aur usse sirf return karna hai .
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+"id":5,
+"name":"sample5"
+}
