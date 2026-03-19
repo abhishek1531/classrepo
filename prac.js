@@ -109,3 +109,33 @@
 
 
 // const http = require("http");
+
+
+
+
+const http = require("http");
+// const server = http.createServer(function(req,res){
+//     res.write("Hello world");
+//     res.end();
+// })
+// server.listen(3000);
+
+// const fs = require("fs");
+// fs.writeFile("data.txt","hello world",function(err){
+// });
+
+// const fs = require("fs");
+// fs.readFile("data.txt","utf8",function(err,data){
+//     console.log(data);
+// });
+
+
+// const fs = require("fs");
+// fs.appendFile("data.txt",nwe world , function(err){
+// });
+
+// const fs = require("fs");
+// fs.unlink("data.txt",function(err){
+// });
+
+// url analyser

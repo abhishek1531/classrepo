@@ -1,0 +1,31 @@
+
+import export par study karo sir bole
+
+today .env works querywagera params wgera 
+
+api keys wagera mimic hoga etc etc these 2 things should be change before deployment payment gateway ka example liye the sir idhr 
+
+routes wagera bata rahe 
+static routes wahera 3rd position ki value kuch bhi ho skti toh vo dynamic routes hai
+path mein dynamic values use karne ke liye params 
+
+query params study and also know about there uses in real world
+
+task params
+
+database me update jo karenge post method se karenge not get method
+
+
+Task:-
+
+e commerce website with multiple routes 
+product price , filters , cart , userdetails , search ke liye alag route hoga 3 routes ko identify karo 
+aur 3 ki alag file banao aur usme kaam karo like controll is for functions aur sabko app.js mein attach karo meri 
+purani apis bhi kaam kare aur new wali bhi 
+
+
+http://localhost:3000/products
+http://localhost:3000/products/price/20000
+http://localhost:3000/cart
+http://localhost:3000/users
+http://localhost:3000/search/sample1

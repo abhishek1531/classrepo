@@ -1,4 +1,11 @@
 // routes mein jana hai naya routes add karna hai post method ka hona chahiye , post method ke andr ek object set karna hai aur usse sirf return karna hai .
+
+GET http://localhost:3000/users
+
+### Get user by id
+GET http://localhost:3000/users/2
+
+### Create new user (POST)
 POST http://localhost:3000/users
 Content-Type: application/json
 

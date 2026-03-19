@@ -10,13 +10,24 @@ const getUsersById = (req,res)=>{
     res.json(user)
 }
 
-const createUser = (req,res)=>{
+const addUsers = (req,res)=>{
     const newUser = req.body
+    users.push(newUser)
     res.json(newUser)
+}
+
+// search
+const searchUser = (req,res)=>{
+    const name = req.params.name
+
+    const result = users.filter(u => u.name.includes(name))
+
+    res.json(result)
 }
 
 module.exports = {
     getUsers,
     getUsersById,
-    createUser
+    addUsers,
+    searchUser
 }

@@ -1,14 +1,16 @@
 const express = require("express")
 const app = express()
 
-// JSON middleware
 app.use(express.json())
 
-// routes import
 const userRoutes = require("./controller/routes/userRoutes")
+const productRoutes = require("./controller/routes/productRoutes")
+const cartRoutes = require("./controller/routes/cartRoutes")
 
-// routes register
+// attach routes
 app.use("/", userRoutes)
+app.use("/", productRoutes)
+app.use("/", cartRoutes)
 
 // basic routes
 app.get("/", (req,res)=>{
