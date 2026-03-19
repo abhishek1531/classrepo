@@ -16,7 +16,6 @@ const addUsers = (req,res)=>{
     res.json(newUser)
 }
 
-// search
 const searchUser = (req,res)=>{
     const name = req.params.name
 
