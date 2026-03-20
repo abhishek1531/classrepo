@@ -7,6 +7,18 @@ const userRoutes = require("./controller/routes/userRoutes")
 const productRoutes = require("./controller/routes/productRoutes")
 const cartRoutes = require("./controller/routes/cartRoutes")
 
+// ✅ Custom Middleware (FIXED)
+const customMiddleWare = (req,res,next) => {
+    if(req.query.skip == "true"){
+        next()
+    } else {
+        res.send("not authorised")
+    }
+}
+
+// use middleware
+app.use(customMiddleWare)
+
 // attach routes
 app.use("/", userRoutes)
 app.use("/", productRoutes)
