@@ -1,4 +1,5 @@
 const users = require("../modules/userModules")
+const jwt = require("jsonwebtoken")
 
 const getUsers = (req,res)=>{
     res.json(users)
@@ -18,15 +19,31 @@ const addUsers = (req,res)=>{
 
 const searchUser = (req,res)=>{
     const name = req.params.name
-
     const result = users.filter(u => u.name.includes(name))
-
     res.json(result)
+}
+
+// 🔥 LOGIN (JWT)
+const login = (req,res)=>{
+    const { name } = req.body
+
+    if(name){
+        const token = jwt.sign(
+            { name: name },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        )
+
+        res.json({ token })
+    } else {
+        res.send("Invalid user")
+    }
 }
 
 module.exports = {
     getUsers,
     getUsersById,
     addUsers,
-    searchUser
+    searchUser,
+    login
 }

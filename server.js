@@ -30,8 +30,6 @@
 // app.listen(PORT, ()=>{
 //     console.log(`Server Running at Port ${PORT}`)
 // });
-
-
 require("dotenv").config()
 
 const app = require("./app")
@@ -41,4 +39,3 @@ const PORT = process.env.PORT
 app.listen(PORT, ()=>{
     console.log(`Server Running at Port ${PORT}`)
 })
-

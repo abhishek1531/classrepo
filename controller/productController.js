@@ -10,9 +10,7 @@ const getProducts = (req,res)=>{
 
 const filterByPrice = (req,res)=>{
     const price = req.params.price
-
     const result = products.filter(p => p.price <= price)
-
     res.json(result)
 }
 

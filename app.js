@@ -3,11 +3,12 @@ const app = express()
 
 app.use(express.json())
 
+// routes
 const userRoutes = require("./controller/routes/userRoutes")
 const productRoutes = require("./controller/routes/productRoutes")
 const cartRoutes = require("./controller/routes/cartRoutes")
 
-// ✅ Custom Middleware (FIXED)
+// custom middleware
 const customMiddleWare = (req,res,next) => {
     if(req.query.skip == "true"){
         next()
@@ -16,7 +17,6 @@ const customMiddleWare = (req,res,next) => {
     }
 }
 
-// use middleware
 app.use(customMiddleWare)
 
 // attach routes
