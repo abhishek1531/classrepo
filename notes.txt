@@ -32,3 +32,8 @@ http://localhost:3000/search/sample1
 
 
 server side rendering (SSR)
+
+<% %> when there is no dynamic data , 
+<%-%> when we have to render raw html content 
+<%=%>when we have to render certain value
+
