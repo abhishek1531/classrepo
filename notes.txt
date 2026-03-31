@@ -29,3 +29,6 @@ http://localhost:3000/products/price/20000
 http://localhost:3000/cart
 http://localhost:3000/users
 http://localhost:3000/search/sample1
+
+
+server side rendering (SSR)

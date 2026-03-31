@@ -8,7 +8,10 @@ const userRoutes = require("./controller/routes/userRoutes")
 const productRoutes = require("./controller/routes/productRoutes")
 const cartRoutes = require("./controller/routes/cartRoutes")
 
-// custom middleware
+// ❌ remove this global middleware (problem create kar raha tha)
+// app.use(customMiddleWare)
+
+// ✅ optional: sirf ek route par lagao (testing ke liye)
 const customMiddleWare = (req,res,next) => {
     if(req.query.skip == "true"){
         next()
@@ -16,8 +19,6 @@ const customMiddleWare = (req,res,next) => {
         res.send("not authorised")
     }
 }
-
-app.use(customMiddleWare)
 
 // attach routes
 app.use("/", userRoutes)
@@ -29,7 +30,7 @@ app.get("/", (req,res)=>{
     res.send("Server Setup Done")
 })
 
-app.get("/home", (req,res)=>{
+app.get("/home", customMiddleWare, (req,res)=>{
     res.send("Home page Done")
 })
 
