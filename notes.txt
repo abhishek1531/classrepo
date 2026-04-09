@@ -130,3 +130,6 @@ db.students.deleteMany({})
 db.students.deleteOne({})
 
 db.students.deleteOne({_id: 4})
+
+
+app.js mein call hoga mdb

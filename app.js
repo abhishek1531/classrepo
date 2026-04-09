@@ -67,29 +67,34 @@
 // module.exports = app
 
 
-const express = require("express")
-const app = express()
+const express = require("express");
+const mdb = require("./models/db");
 
-app.use(express.json())
+const app = express();
 
-// routes
-const userRoutes = require("./controller/routes/userRoutes")
-const productRoutes = require("./controller/routes/productRoutes")
-const cartRoutes = require("./controller/routes/cartRoutes")
+mdb();
 
 // middleware
-const customMiddleWare = (req,res,next) => {
-    if(req.query.skip == "true"){
-        next()
+app.use(express.json());
+
+// routes import
+const userRoutes = require("./controller/routes/userRoutes");
+const productRoutes = require("./controller/routes/productRoutes");
+const cartRoutes = require("./controller/routes/cartRoutes");
+
+// custom middleware
+const customMiddleWare = (req, res, next) => {
+    if (req.query.skip == "true") {
+        next();
     } else {
-        res.send("not authorised")
+        res.send("not authorised");
     }
-}
+};
 
 // view engine
-app.set("view engine","ejs")
+app.set("view engine", "ejs");
 
-// ✅ central data object (sir ka concept)
+// central data object (sir ka concept)
 const homePageContent = {
     data: {
         universityName: "GLA UNIVERSITY",
@@ -111,34 +116,34 @@ const homePageContent = {
     footer: {
         title: "Footer Section"
     }
-}
+};
 
 // main route
-app.get("/", (req,res)=>{
-    res.render("home", homePageContent)
-})
+app.get("/", (req, res) => {
+    res.render("home", homePageContent);
+});
 
-// testing routes (optional)
-app.get("/header",(req,res)=>{
-    res.render("header", homePageContent.header)
-})
+// testing routes
+app.get("/header", (req, res) => {
+    res.render("header", homePageContent.header);
+});
 
-app.get("/content",(req,res)=>{
-    res.render("content", homePageContent.content)
-})
+app.get("/content", (req, res) => {
+    res.render("content", homePageContent.content);
+});
 
-app.get("/footer",(req,res)=>{
-    res.render("footer", homePageContent.footer)
-})
+app.get("/footer", (req, res) => {
+    res.render("footer", homePageContent.footer);
+});
 
 // middleware test
-app.get("/home", customMiddleWare, (req,res)=>{
-    res.send("Home page Done")
-})
+app.get("/home", customMiddleWare, (req, res) => {
+    res.send("Home page Done");
+});
 
 // attach routes
-app.use("/", userRoutes)
-app.use("/", productRoutes)
-app.use("/", cartRoutes)
+app.use("/", userRoutes);
+app.use("/", productRoutes);
+app.use("/", cartRoutes);
 
-module.exports = app
+module.exports = app;
