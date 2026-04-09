@@ -54,14 +54,23 @@
 //     login
 // };
 
-
 const User = require("../models/userModules");
 
+// GET ALL USERS
 const getUsers = async (req, res) => {
     const users = await User.find({});
     res.json(users);
 };
 
+// GET USER BY ID
+const getUserById = async (req, res) => {
+    const id = req.params.id;
+
+    const user = await User.findOne({ _id: id });
+
+    res.json(user);
+};
 module.exports = {
-    getUsers
+    getUsers,
+    getUserById
 };
