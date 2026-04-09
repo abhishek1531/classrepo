@@ -37,3 +37,96 @@ server side rendering (SSR)
 <%-%> when we have to render raw html content 
 <%=%>when we have to render certain value
 
+what is sql and nosql what is mongodb
+
+marks: [
+    {"subject":"Node.Js",total:88,isabsent:false},
+    {"subject":"Maths",total:88,isabsent:false},
+    {"subject":"English",total:88,isabsent:false},
+
+]
+
+
+db.students.find({
+    $or : [{isActive: false},{skills: {$in: ["Python"]}}],
+});
+
+db.students.updateOne({_id: 3},{$pull: {skills: "Python"}});
+
+db.students.updateOne({_id: 4},{$pull: {skills: "React"}});
+
+db.students.updateMany(
+    {},
+    {
+        "$set": {
+            "marks":[
+            {"marks": "Maths",score: 100},
+            {"marks": "Node",score: 91},
+            ]
+        }
+    }
+)
+
+
+db.students.updateOne(
+    {
+        _id: 4,
+        "marks.subject":"Maths",
+    },
+    {
+        $set: {
+            "marks.$[elem].score": 100,
+        },
+    },
+);
+
+
+
+
+
+db.students.updateOne(
+  { _id: 4,
+   "marks.subject": "Maths",
+  },
+  { 
+    $set: { 
+        "marks.$.score": 72,
+        }, 
+    },
+);
+
+
+// $ bcz i dont know the position
+
+
+db.students.updateOne(
+  { 
+    _id: 4,
+  },
+  { 
+    $set: { 
+      "marks.$[elem].score": 72,
+    }, 
+  },
+  {
+    arrayFilters: [
+      { "elem.marks": "Maths" }
+    ]
+  }
+);
+
+db.students.updateOne(
+  {
+    _id: 4,
+  },
+  {
+    $set: {
+      "marks.0.score": 100,
+    },
+  },
+);
+
+db.students.deleteMany({})
+db.students.deleteOne({})
+
+db.students.deleteOne({_id: 4})
