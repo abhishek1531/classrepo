@@ -19,16 +19,20 @@
 //     res.send("Protected data: " + req.user.name)
 // })
 
-// module.exports = router
+// module.exports = routerconst express = require("express");
+
 const express = require("express");
 const router = express.Router();
 
-const { getUsers, getUserById } = require("../userController");
+const { getUsers, getUserById, addUser } = require("../userController");
 
-// all users
+// GET
 router.get("/users", getUsers);
 
-// user by id
+// GET by ID
 router.get("/users/:id", getUserById);
+
+//  POST
+router.post("/users", addUser);
 
 module.exports = router;

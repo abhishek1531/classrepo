@@ -52,25 +52,107 @@
 //     addUsers,
 //     searchUser,
 //     login
+// };const User = require("../models/userModules");
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // GET ALL
+// const User = require("../models/userModules");
+
+// // GET ALL
+// const getUsers = async (req, res) => {
+//     const users = await User.find({});
+//     res.json(users);
 // };
+
+// // ✅ GET BY ID
+// const getUserById = async (req, res) => {
+//     const id = req.params.id;
+
+//     const user = await User.findOne({ _id: id });
+
+//     if (!user) {
+//         return res.send("User not found");
+//     }
+
+//     res.json(user);
+// };
+
+// module.exports = {
+//     getUsers,
+//     getUserById
+// };
+
+
+
+
+// exports.addUser = async(req,res)=>{
+//     const userMeta = req.body
+
+//     if(userMeta?._id){
+//         const existingUser = await User.find({_id:userMeta._id})
+//         console.log("existingUser",existingUser);
+//         if(existingUser){
+//             return res.send("User already exists");
+//         }
+//         User.create(userMeta);
+//         res.send("New user inserted");
+//     }
+// };
+
+
+
+
 
 const User = require("../models/userModules");
 
-// GET ALL USERS
+// GET ALL
 const getUsers = async (req, res) => {
     const users = await User.find({});
     res.json(users);
 };
 
-// GET USER BY ID
+// GET BY ID
 const getUserById = async (req, res) => {
     const id = req.params.id;
-
     const user = await User.findOne({ _id: id });
+
+    if (!user) {
+        return res.send("User not found");
+    }
 
     res.json(user);
 };
+
+//  ADD USER
+const addUser = async (req, res) => {
+    const userMeta = req.body;
+
+    if (userMeta?._id) {
+        const existingUser = await User.findOne({ _id: userMeta._id });
+
+        if (existingUser) {
+            return res.send("User already exists ");
+        }
+
+        await User.create(userMeta); // await important
+        return res.send("New user inserted ");
+    }
+
+    res.send("Invalid data");
+};
 module.exports = {
     getUsers,
-    getUserById
+    getUserById,
+    addUser
 };

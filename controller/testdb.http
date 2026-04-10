@@ -1,0 +1,18 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "_id": 56,
+    "name": "Lyodd",
+    "age": 21,
+    "course": "BCA",
+    "skills": ["Flask"],
+    "address": { "city": "Bangalore", "pincode": 560001 },
+    "isActive": true,
+    "marks": [
+        { "subject": "Maths", "score": 100 },
+        { "subject": "Node", "score": 91 }
+    ]
+}
+
+
