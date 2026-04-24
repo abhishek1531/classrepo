@@ -114,43 +114,115 @@
 
 
 
+// const User = require("../models/userModules");
+
+// // GET ALL
+// const getUsers = async (req, res) => {
+//     const users = await User.find({});
+//     res.json(users);
+// };
+
+// // GET BY ID
+// const getUserById = async (req, res) => {
+//     const id = req.params.id;
+//     const user = await User.findOne({ _id: id });
+
+//     if (!user) {
+//         return res.send("User not found");
+//     }
+
+//     res.json(user);
+// };
+
+// //  ADD USER
+// const addUser = async (req, res) => {
+//     const userMeta = req.body;
+
+//     if (userMeta?._id) {
+//         const existingUser = await User.findOne({ _id: userMeta._id });
+
+//         if (existingUser) {
+//             return res.send("User already exists ");
+//         }
+
+//         await User.create(userMeta); // await important
+//         return res.send("New user inserted ");
+//     }
+//     res.send("Invalid data");
+// };
+// module.exports = {
+//     getUsers,
+//     getUserById,
+//     addUser
+// };
+
+
+
+// // user.create(userMeta);
+// // res.send("New User Indesrted");
+// // };
+
+
+
+
+
+
 const User = require("../models/userModules");
 
-// GET ALL
+//  GET ALL USERS
 const getUsers = async (req, res) => {
-    const users = await User.find({});
-    res.json(users);
-};
-
-// GET BY ID
-const getUserById = async (req, res) => {
-    const id = req.params.id;
-    const user = await User.findOne({ _id: id });
-
-    if (!user) {
-        return res.send("User not found");
+    try {
+        const users = await User.find({});
+        res.json(users);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error fetching users");
     }
-
-    res.json(user);
 };
 
-//  ADD USER
-const addUser = async (req, res) => {
-    const userMeta = req.body;
+//  GET USER BY ID
+const getUserById = async (req, res) => {
+    try {
+        const id = req.params.id;
 
-    if (userMeta?._id) {
-        const existingUser = await User.findOne({ _id: userMeta._id });
+        const user = await User.findOne({ _id: id });
 
-        if (existingUser) {
-            return res.send("User already exists ");
+        if (!user) {
+            return res.status(404).send("User not found");
         }
 
-        await User.create(userMeta); // await important
-        return res.send("New user inserted ");
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error fetching user");
     }
-
-    res.send("Invalid data");
 };
+
+//  ADD USER (Joi validation already done in middleware)
+const addUser = async (req, res) => {
+    try {
+        const userData = req.body;
+
+        // 🔥 optional: check duplicate by mobile
+        const existingUser = await User.findOne({ mobile: userData.mobile });
+
+        if (existingUser) {
+            return res.status(400).send("User already exists ❌");
+        }
+
+        const newUser = await User.create(userData);
+
+        res.status(201).json({
+            message: "User created successfully ",
+            data: newUser
+        });
+
+    } catch (err) {
+        console.log("ERROR:", err);   // 🔥 debug ke liye important
+        res.status(500).send("Error saving user");
+    }
+};
+
 module.exports = {
     getUsers,
     getUserById,
